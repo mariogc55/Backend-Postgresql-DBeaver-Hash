@@ -1,0 +1,12 @@
+CREATE TABLE users (
+    -- Clave Primaria (Identificador único y auto-incremental)
+    id SERIAL PRIMARY KEY,
+    
+    -- Campos del modelo (nombre, correo, password)
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+
+    -- Campo opcional pero recomendado para seguimiento
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
