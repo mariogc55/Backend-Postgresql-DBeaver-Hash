@@ -15,7 +15,7 @@ async function guardarUsuario(req, res) {
         // --- INICIO DE LOS CAMBIOS DE SEGURIDAD ---
 
         // Generar un 'salt' (valor aleatorio para asegurar el hash)
-        // La fuerza de 10 es un buen balance entre seguridad y velocidad.
+        // La fuerza de 10 para velocidad y seguridad en balance
         const salt = await bcrypt.genSalt(10); 
         
         // Hashear la contraseña recibida
@@ -33,11 +33,11 @@ async function guardarUsuario(req, res) {
     }
 }
 
-// Controlador para obtener todos los usuarios
+// Controlador para obtener todos los usuarios en lista
 async function obtenerUsuarios(req, res) {
     try {
         const usuarios = await userModel.obtenerUsuarios();
-        // Nota: Considera eliminar el campo 'password' de cada usuario aquí antes de enviarlo.
+        // Nota: Considera eliminar el campo 'password' de cada usuario aquí antes de enviarlo. Esta en estado de mejora
         res.status(200).json(usuarios);
     } catch (error) {
         console.error('Error al obtener los usuarios:', error.message);
@@ -48,4 +48,5 @@ async function obtenerUsuarios(req, res) {
 module.exports = {
     guardarUsuario,
     obtenerUsuarios,
+
 };
